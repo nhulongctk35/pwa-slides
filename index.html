@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>LongTran - Progressive Web Apps</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/league.css" id="theme">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
+
+  <style>
+    .reveal .slide-background-content {
+      background-size: contain;
+    }
+
+    .reveal .slides section .fragment.fade-out.visible {
+      display: none;
+    }
+
+    .d-flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .d-flex > div:nth-child(1) {
+      width: 30%;
+    }
+
+    .d-flex > div:nth-child(2) {
+      width: 70%;
+    }
+
+    .img-reset {
+      margin: 0 !important;
+      background: transparent !important;;
+      border: 0 !important;;
+      box-shadow: none !important;;
+    }
+
+    #install-bg {
+      background: url('./static/manifest-step3.jpeg') no-repeat;
+      background-size: contain;
+      width: 600px;
+      height: 600px;
+    }
+  </style>
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides" style="width: 100%;">
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <h3>INTRODUCTION TO PROGRESSIVE WEB APPS</h3>
+      <p>
+        <small>Created by <a href="https://longtran.netlify.com">Long Tran</a></small>
+      </p>
+    </section>
+
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <h2>Agenda</h2>
+      <ul>
+        <li>What is a PWA</li>
+        <li>Why we should care</li>
+        <li class="fragment highlight-red">How to make a PWAs</li>
+        <li class="fragment highlight-red">Service Worker</li>
+        <li class="fragment highlight-red">How to convert an existing React app to PWA</li>
+        <li>Demo</li>
+      </ul>
+    </section>
+
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <h2>But. What is a PWA</h2>
+      <p class="fragment highlight-red">
+        <span class="fade-in">The web ... but better</span>
+      </p>
+      <aside class="notes">
+        It's a set of best practices to make a web app function similar a native app.
+        like working offline, push notification, ...
+      </aside>
+    </section>
+
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section>
+        <h3>Web vs Native Apps</h3>
+        <ul>
+          <li class="fragment fade-in">Native apps are fast and quick to respond</li>
+          <li class="fragment fade-in">Native apps have a smooth, consistent self container UI</li>
+          <li class="fragment fade-in">Native apps work consistently well offline</li>
+        </ul>
+      </section>
+      <section>
+        <h3>But... App development can be painful</h3>
+        <ul>
+          <li class="fragment fade-in">Different languages between iOS and Android</li>
+          <li class="fragment fade-in">Expensive to develop</li>
+          <li class="fragment fade-in">Hard to updates</li>
+        </ul>
+      </section>
+    </section>
+
+    <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h2>So. PWA's to rescue</h2>
+      </section>
+
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Progressive</h2>
+            <p>Works for every user, regardless of browser choice because it's built with progressive enhancement as a core tenet.</p>
+          </div>
+          <div>
+            <img src="./static/browsers.png" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Responsive</h2>
+            <p>Fits any form factor: Desktop, mobile, tablet, or whatever is next.</p>
+          </div>
+          <div>
+            <img src="./static/responsive-design.png" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Connectivity Independent</h2>
+            <p>Enhance with service workers to work offline or on low-quality networks.</p>
+          </div>
+          <div>
+            <img src="./static/connectivity-independent.png" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Re-engagable</h2>
+            <p>Makes re-engagement easy through features like push notification (Using service worker).</p>
+          </div>
+          <div>
+            <img src="./static/push-notification.png" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex" style="justify-content: space-evenly">
+          <div>
+            <h2>Installable</h2>
+            <p>Allows users to add apps to their home screen without the hassle of an app store.</p>
+          </div>
+          <div id="install-bg">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Linkable</h2>
+            <p>Easily share applications via URL, does not require complex installation.</p>
+          </div>
+          <div>
+            <img src="./static/browsers.png" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="d-flex">
+          <div>
+            <h2>Safe</h2>
+            <p>Served via HTTPs to prevent snooping and to ensure content hasn't been tampered with.</p>
+          </div>
+          <div>
+            <img src="./static/save-https.jpg" alt="" class="img-reset">
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h2>How to make a PWAs</h2>
+        <aside class="notes">
+          This slide has fragments which are also stepped through in the notes window.
+        </aside>
+      </section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>1. Web App Manifest</h3>
+        <aside class="notes">
+          - a json file that tell browsers about your web app and how it should behave when installed on mobile.
+          - Having a manifest is required by Chrome to show the Add to Home Screen prompt.
+          - A typical manifest file includes information about the app name, icons it should use, the start_url it
+          should start at when launched, and more.
+        </aside>
+        <pre>
+        <code class="hljs" data-trim data-line-numbers="2,3,4,18,19,20">
+          {
+              "short_name": "NFQ PWA",
+              "name": "NFQ Progressive Web Apps",
+              "icons": [
+                {
+                  "src": "icons/icon-72x72.png",
+                  "sizes": "72x72",
+                  "type": "image/png"
+                },
+                {
+                  "src": "icons/icon-512x512.png",
+                  "sizes": "512x512",
+                  "type": "image/png"
+                }
+              ],
+              "splash_pages": null,
+              "start_url": ".",
+              "display": "standalone",
+              "theme_color": "#0F2035",
+              "background_color": "#ffffff"
+          }
+        </code>
+      </pre>
+      </section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h2>manifest.json</h2>
+        <pre><code class="hljs"><link rel="manifest" href="/manifest.json"></code></pre>
+      </section>
+
+      <section data-background="./static/manifest.png">
+      </section>
+
+      <section data-background="./static/manifest-step1.jpeg">
+      </section>
+
+      <section data-background="./static/manifest-step2.jpeg">
+      </section>
+
+      <section data-background="./static/manifest-step3.jpeg">
+      </section>
+
+      <section data-background="./static/audit.png">
+      </section>
+
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>2. Service Worker</h3>
+        <aside class="notes">
+          A service worker is another technical element that supports one of the main features of progressive web
+          applications — the offline work mode, background syncs, and push notifications typical for native apps
+        </aside>
+        <ol>
+          <li class="fragment fade-in">Offline work mode</li>
+          <li class="fragment fade-in">Push notifications</li>
+          <li class="fragment fade-in">Background synchronization</li>
+        </ol>
+      </section>
+      <section data-background-video="/static/service-worker.mov" data-background-color="#000000">
+      </section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>Registering the Service Worker</h3>
+        <pre>
+          <code class="hljs" data-trim data-line-numbers>
+            if('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js');
+            };
+          </code>
+        </pre>
+      </section>
+
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>Lifecycle of a Service Worker</h3>
+        Installation
+        <pre>
+          <code class="hljs" data-trim>
+            self.addEventListener('install', (event) => {
+              event.waitUntil(
+                  caches.open([
+                   '/index.html',
+                    '/static/favicon.icon',
+                    ...
+                  ])
+                  .then((cache) => cache.addAll(filesToCache))
+              );
+            });
+          </code>
+        </pre>
+      </section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activation
+        <pre>
+          <code class="hljs" data-trim data-line-numbers>
+            self.addEventListener('activate', function(event) {
+            var cacheKeeplist = ['/index.html', '/static/favicon.icon'];
+
+            event.waitUntil(
+              caches.keys().then(function(keyList) {
+                return Promise.all(keyList.map(function(key) {
+                  if (cacheKeeplist.indexOf(key) === -1) {
+                    return caches.delete(key);
+                  }
+                }));
+              })
+            );
+          });
+          </code>
+        </pre>
+      </section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activated
+        <pre>
+          <code class="hljs" data-trim>
+            event.respondWith(
+                caches.match(event.request)
+                    .then(res => res || fetch(event.request))
+            );
+          </code>
+        </pre>
+      </section>
+    </section>
+
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <h2>How to convert an React App to PWA</h2>
+    </section>
+
+    <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <h2>Demo</h2>
+      <a href="https://nfq-pwa.netlify.com" target="_blank">https://nfq-pwa.netlify.com</a>
+    </section>
+  </div>
+</div>
+
+<script src="js/reveal.js"></script>
+<script>
+
+  // More info https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    width: '100%',
+    height: '100%',
+    controls: true,
+    progress: true,
+    center: true,
+    hash: true,
+
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+    // More info https://github.com/hakimel/reveal.js#dependencies
+    dependencies: [
+      {
+        src: 'plugin/markdown/marked.js', condition: function () {
+          return !!document.querySelector('[data-markdown]');
+        }
+      },
+      {
+        src: 'plugin/markdown/markdown.js', condition: function () {
+          return !!document.querySelector('[data-markdown]');
+        }
+      },
+      {src: 'plugin/highlight/highlight.js', async: true},
+      {src: 'plugin/search/search.js', async: true},
+      {src: 'plugin/zoom-js/zoom.js', async: true},
+      {src: 'plugin/notes/notes.js', async: true}
+    ]
+  });
+
+</script>
+
+</body>
+</html>
