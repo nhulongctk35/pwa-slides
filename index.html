@@ -109,7 +109,7 @@
 
     <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
       <section>
-        <h3>Web vs Native Apps</h3>
+        <h2>Web vs Native Apps</h2>
         <ul>
           <li class="fragment fade-in">Native apps are fast and quick to respond</li>
           <li class="fragment fade-in">Native apps have a smooth, consistent self container UI</li>
@@ -117,7 +117,7 @@
         </ul>
       </section>
       <section>
-        <h3>But... App development can be painful</h3>
+        <h2>But... App development can be painful</h2>
         <ul>
           <li class="fragment fade-in">Different languages between iOS and Android</li>
           <li class="fragment fade-in">Expensive to develop</li>
@@ -130,8 +130,7 @@
       <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <h2>So. PWA's to rescue</h2>
       </section>
-
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Progressive</h2>
@@ -142,7 +141,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Responsive</h2>
@@ -153,7 +152,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Connectivity Independent</h2>
@@ -164,7 +163,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Re-engagable</h2>
@@ -175,7 +174,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex" style="justify-content: space-evenly">
           <div>
             <h2>Installable</h2>
@@ -185,7 +184,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Linkable</h2>
@@ -196,7 +195,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
         <div class="d-flex">
           <div>
             <h2>Safe</h2>
@@ -216,7 +215,7 @@
           This slide has fragments which are also stepped through in the notes window.
         </aside>
       </section>
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h3>1. Web App Manifest</h3>
         <aside class="notes">
           - a json file that tell browsers about your web app and how it should behave when installed on mobile.
@@ -250,24 +249,24 @@
         </code>
       </pre>
       </section>
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h2>manifest.json</h2>
         <pre><code class="hljs"><link rel="manifest" href="/manifest.json"></code></pre>
       </section>
 
-      <section data-background="./static/manifest.png">
+      <section data-background="./static/manifest.png" data-transition="convex">
       </section>
 
-      <section data-background="./static/manifest-step1.jpeg">
+      <section data-background="./static/manifest-step1.jpeg" data-transition="convex">
       </section>
 
-      <section data-background="./static/manifest-step2.jpeg">
+      <section data-background="./static/manifest-step2.jpeg" data-transition="convex">
       </section>
 
-      <section data-background="./static/manifest-step3.jpeg">
+      <section data-background="./static/manifest-step3.jpeg" data-transition="convex">
       </section>
 
-      <section data-background="./static/audit.png">
+      <section data-background="./static/audit.png" data-transition="convex">
       </section>
 
       <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
@@ -282,9 +281,9 @@
           <li class="fragment fade-in">Background synchronization</li>
         </ol>
       </section>
-      <section data-background-video="/static/service-worker.mov" data-background-color="#000000">
+      <section data-transition="convex" data-background-video="/static/service-worker.mov" data-background-color="#000000">
       </section>
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h3>Registering the Service Worker</h3>
         <pre>
           <code class="hljs" data-trim data-line-numbers>
@@ -295,11 +294,11 @@
         </pre>
       </section>
 
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h3>Lifecycle of a Service Worker</h3>
         Installation
         <pre>
-          <code class="hljs" data-trim>
+          <code class="hljs" data-trim data-line-numbers="">
             self.addEventListener('install', (event) => {
               event.waitUntil(
                   caches.open([
@@ -313,11 +312,11 @@
           </code>
         </pre>
       </section>
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h3>Lifecycle of a Service Worker</h3>
         Activation
         <pre>
-          <code class="hljs" data-trim data-line-numbers>
+          <code class="hljs" data-trim data-line-numbers="">
             self.addEventListener('activate', function(event) {
             var cacheKeeplist = ['/index.html', '/static/favicon.icon'];
 
@@ -334,11 +333,11 @@
           </code>
         </pre>
       </section>
-      <section data-transition="slide" data-background="#001F3F" data-background-transition="zoom">
+      <section data-transition="convex" data-background="#001F3F">
         <h3>Lifecycle of a Service Worker</h3>
         Activated
         <pre>
-          <code class="hljs" data-trim>
+          <code class="hljs" data-trim data-line-numbers="2,3">
             event.respondWith(
                 caches.match(event.request)
                     .then(res => res || fetch(event.request))
@@ -370,6 +369,7 @@
     progress: true,
     center: true,
     hash: true,
+    pdfSeparateFragments: false,
 
     transition: 'slide', // none/fade/slide/convex/concave/zoom
 
