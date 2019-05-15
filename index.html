@@ -372,39 +372,89 @@
       <section data-transition="convex" data-background="#001F3F">
         <h3>Lifecycle of a Service Worker</h3>
         Installation
+        <div>
+            <pre>
+              <code class="hljs" data-trim data-line-numbers="">
+                self.addEventListener('install', (event) => {
+                  // somePromise is a Promise function
+                  event.waitUntil(somePromise);
+                });
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section data-transition="convex" data-background="#001F3F">
+        <h3>Lifecycle of a Service Worker</h3>
+        Installation
+        <div>
+            <pre>
+              <code class="hljs" data-trim data-line-numbers="2,3,4">
+                self.addEventListener('install', (event) => {
+                  event.waitUntil(
+                      caches.open('nfq-v1')
+                        .then((cache) => cache.addAll(filesToCache))
+                  );
+                });
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section data-transition="convex" data-background="#001F3F">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activation
         <pre>
-          <code class="hljs" data-trim data-line-numbers="">
-            self.addEventListener('install', (event) => {
-              event.waitUntil(
-                  caches.open([
-                   '/index.html',
-                    '/static/favicon.icon',
-                    ...
-                  ])
-                  .then((cache) => cache.addAll(filesToCache))
-              );
+          <code class="hljs" data-trim data-line-numbers="1">
+            self.addEventListener('activate', (event) => {
+              // Deleting old caches
+            });
+          </code>
+        </pre>
+      </section>
+
+      <section data-transition="convex" data-background="#001F3F">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activation
+        <pre>
+          <code class="hljs" data-trim data-line-numbers="4,12">
+            self.addEventListener('activate', (event) => {
+              var cacheKeeplist = ['/index.html', '/static/favicon.icon'];
+
+              const deleteInvalidCache = (keyList) => {
+                return Promise.all(keyList.map(function(key) {
+                  if (cacheKeeplist.indexOf(key) === -1) {
+                    return caches.delete(key);
+                  }
+                }));
+              }
+
+              event.waitUntil(caches.keys().then(deleteInvalidCache));
             });
           </code>
         </pre>
       </section>
       <section data-transition="convex" data-background="#001F3F">
         <h3>Lifecycle of a Service Worker</h3>
-        Activation
+        Activated
+        <pre>
+          <code class="hljs" data-trim data-line-numbers="1,2,3">
+            self.addEventListener('fetch', (event) => {
+              console.log(event.request);
+            });
+          </code>
+        </pre>
+      </section>
+      <section data-transition="convex" data-background="#001F3F">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activated
         <pre>
           <code class="hljs" data-trim data-line-numbers="">
-            self.addEventListener('activate', function(event) {
-            var cacheKeeplist = ['/index.html', '/static/favicon.icon'];
-
-            event.waitUntil(
-              caches.keys().then(function(keyList) {
-                return Promise.all(keyList.map(function(key) {
-                  if (cacheKeeplist.indexOf(key) === -1) {
-                    return caches.delete(key);
-                  }
-                }));
-              })
-            );
-          });
+            self.addEventListener('fetch', (event) => {
+              console.log(event.request);
+              console.log(event.request.method);
+              console.log(event.request.headers);
+            });
           </code>
         </pre>
       </section>
@@ -413,10 +463,25 @@
         Activated
         <pre>
           <code class="hljs" data-trim data-line-numbers="2,3">
-            event.respondWith(
+            self.addEventListener('fetch', (event) => {
+              event.respondWith(
                 caches.match(event.request)
-                    .then(res => res || fetch(event.request))
-            );
+              )
+            });
+          </code>
+        </pre>
+      </section>
+      <section data-transition="convex" data-background="#001F3F">
+        <h3>Lifecycle of a Service Worker</h3>
+        Activated
+        <pre>
+          <code class="hljs" data-trim data-line-numbers="">
+            self.addEventListener('fetch', (event) => {
+              event.respondWith(
+                caches.match(event.request)
+                  .then(response => response || fetch(event.request))
+              );
+            });
           </code>
         </pre>
       </section>
